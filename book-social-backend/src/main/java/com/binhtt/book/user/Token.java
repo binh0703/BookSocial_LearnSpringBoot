@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -16,12 +17,13 @@ public class Token {
     @Id
     @GeneratedValue
     private Integer id;
+    @Column(unique = true)
     private String token;
-    private LocalDate createdAt;
-    private LocalDate expiresAt;
-    private LocalDate validatedAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime expiresAt;
+    private LocalDateTime validatedAt;
 
     @ManyToOne
-    @Column(name="userId", nullable = false)
+    @JoinColumn(name="userId", nullable = false)
     private User user;
 }
